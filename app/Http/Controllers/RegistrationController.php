@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -29,6 +31,10 @@ class RegistrationController extends Controller
        //sign in
 
         auth()->login($user);
+
+        session()->flash('message','Thanks for signing up');
+
+//        Mail::to($user)->send(new WelcomeMail);
 
         return redirect('/');
     }

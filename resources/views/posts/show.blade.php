@@ -6,6 +6,8 @@
 
     <h1>{{$post->title}}</h1>
 
+        <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}}  by <a href="#">{{$post->user->name}}</a></p>
+
         {{$post->body}}
 
 
@@ -59,7 +61,10 @@
         </div>
     </div>
                 @else
-               <a href="/login"> Please login to add comment to this post</a>
+                <hr>
+              &nbsp;
+                <a href="/login"> Please login to add comment to this post</a>
+                <hr>
                 @endif
 
     </div>
