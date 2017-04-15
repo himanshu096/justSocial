@@ -44,6 +44,9 @@ class Post extends Model
             $query->whereYear('created_at',$year);
         }
 
+        if ($user=request('user_id') && (auth()->check())){
+            $query->where('user_id',$user);
+        }
 
 
 
@@ -64,5 +67,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class );
     }
 
+
+    public function likes(){
+
+        return $this->belongsToMany(Likes::class );
+    }
 
 }

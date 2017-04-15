@@ -7,6 +7,7 @@
 
             @if(Auth()->check())
                 <a class="nav-link" href="/posts/create">New Post</a>
+                <a class="nav-link" href="/me/posts">My Post</a>
             <a class="nav-link ml-auto" href="/logout">{{Auth::user()->name}}</a>
 
             @else

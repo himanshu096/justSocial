@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostsController extends Controller
@@ -21,6 +22,7 @@ class PostsController extends Controller
 
         $posts=Post::latest()->filter(request(['month','year']))->get();
 
+
         //todo move this to post model
 //        $archive=Post::selectRaw('year(created_at) year , monthname(created_at) month, count(*) published')
 //            ->groupBy('year','month')
@@ -31,6 +33,13 @@ class PostsController extends Controller
 
 
 
+
+        return view('posts.index',compact('posts','archive'));
+    }
+
+    public function showMyPost(){
+
+        $posts = Post::where('user_id', Auth::id())->get();
 
         return view('posts.index',compact('posts','archive'));
     }
